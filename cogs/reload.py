@@ -1,5 +1,4 @@
 from discord.ext import commands
-import logging
 
 class Reload(commands.Cog):
     def __init__(self, bot):
@@ -12,11 +11,14 @@ class Reload(commands.Cog):
                 ext = args[0]
                 if ext in self.bot.cogs.keys():
                     await ctx.send(f'Reloading {ext}...')
-                    logging.warn(f'{ext} reloaded by {ctx.author}')
                     self.bot.reload_extension(f'cogs.{ext.lower()}')
                 else:
-                    await ctx.send(f'{ext} not recognised.')    
-
+                    await ctx.send(f'{ext} not recognised.')
+    
+    @commands.command()
+    async def listcogs(self, ctx):
+        if self.bot.is_owner(ctx.author):
+            await ctx.send(', '.join(self.bot.cogs.keys()))
 
 def setup(bot):
     bot.add_cog(Reload(bot))
