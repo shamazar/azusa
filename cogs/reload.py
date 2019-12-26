@@ -14,12 +14,12 @@ class Reload(commands.Cog):
                     await ctx.send(f'{len(self.bot.cogs)} cogs reloaded.')
 
             elif len(args) == 1:
-                ext = args[0]
-                if ext in self.bot.cogs.keys():
-                    await ctx.send(f'Reloading {ext}...')
-                    self.bot.reload_extension(f'cogs.{ext.lower()}')
+                cog = args[0]
+                if cog in self.bot.cogs.keys():
+                    await ctx.send(f'Reloading {cog}...')
+                    self.bot.reload_extension(f'cogs.{cog.lower()}')
                 else:
-                    await ctx.send(f'{ext} not recognised.')
+                    await ctx.send(f'{cog} not recognised.')
 
             else:
                 await ctx.send('Unrecognised arguments, please specify a cog.')
