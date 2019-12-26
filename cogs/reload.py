@@ -7,13 +7,22 @@ class Reload(commands.Cog):
     @commands.command()
     async def reload(self, ctx, *args):
         if self.bot.is_owner(ctx.author):
-            if len(args) == 1:
+            if not args:
+                async with ctx.channel.typing():
+                    for cog in self.bot.cogs.keys():
+                        self.bot.reload_extension(f'cogs.{cog.lower()}')
+                    await ctx.send(f'{len(self.bot.cogs)} cogs reloaded.')
+
+            elif len(args) == 1:
                 ext = args[0]
                 if ext in self.bot.cogs.keys():
                     await ctx.send(f'Reloading {ext}...')
                     self.bot.reload_extension(f'cogs.{ext.lower()}')
                 else:
                     await ctx.send(f'{ext} not recognised.')
+
+            else:
+                await ctx.send('Unrecognised arguments, please specify a cog.')
     
     @commands.command()
     async def listcogs(self, ctx):
