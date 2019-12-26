@@ -6,7 +6,7 @@ import os
 import logging
 from configparser import ConfigParser
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 if __name__ == '__main__':
     if os.path.isfile('bot.cfg'):
@@ -16,6 +16,7 @@ if __name__ == '__main__':
         raise OSError("bot.cfg not found")
 
     bot = commands.Bot(config['bot']['prefix'])
+    bot.owner_id = int(config['bot']['ownerid'])
 
     for cog in os.listdir('cogs'):
         if cog.endswith('.py'):
