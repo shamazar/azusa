@@ -2,3 +2,7 @@
 token=token
 prefix=!
 ownerid=012345678901234567
+
+[google]
+api_key=
+engine_id=
