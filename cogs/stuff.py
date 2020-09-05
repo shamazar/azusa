@@ -28,12 +28,9 @@ class Stuff(commands.Cog):
                 'safe': 'off',
                 }
 
-            # TODO: move to only loading keys on cog load, this is bad
-            config = ConfigParser()
-            config.read('bot.cfg')
-            if config['google']['api_key'] and config['google']['engine_id']:
-                key = config['google']['api_key']
-                cx = config['google']['engine_id']
+            if self.bot.config['google']['api_key'] and self.bot.config['google']['engine_id']:
+                key = self.bot.config['google']['api_key']
+                cx = self.bot.config['google']['engine_id']
             else:
                 return
 

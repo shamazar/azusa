@@ -6,10 +6,8 @@ class Test(commands.Cog):
 
     @commands.command()
     async def test(self, ctx, *args):
-        if self.bot.is_owner(ct.author):
-            #await ctx.send('{} arguments: {}'.format(len(args), ', '.join(args)))
-            perms = ctx.author.permissions_in(ctx.channel).manage_messages
-            await ctx.send(str(perms))
+        if self.bot.is_owner(ctx.author):
+            await ctx.send(self.bot.config)
 
 def setup(bot):
     bot.add_cog(Test(bot))

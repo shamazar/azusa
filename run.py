@@ -17,10 +17,11 @@ if __name__ == '__main__':
 
     bot = commands.Bot(config['bot']['prefix'])
     bot.owner_id = int(config['bot']['ownerid'])
+    bot.config = config
 
     for cog in os.listdir('cogs'):
         if cog.endswith('.py'):
             name = cog[:-3]
             bot.load_extension(f'cogs.{name}')
 
-    bot.run(config['bot']['token'])
+    bot.run(bot.config['bot']['token'])
