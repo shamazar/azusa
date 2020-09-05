@@ -10,11 +10,10 @@ class Reload(commands.Cog):
     async def reload(self, ctx, *args):
         if self.bot.is_owner(ctx.author):
             if not args:
-                async with ctx.channel.typing():
-                    for cog in self.bot.cogs.keys():
-                        self.bot.reload_extension(f'cogs.{cog.lower()}')
-                    await ctx.send(f'{len(self.bot.cogs)} cogs reloaded.')
-                    self.bot.config = reload_cfg('bot.cfg')
+                for cog in self.bot.cogs.keys():
+                    self.bot.reload_extension(f'cogs.{cog.lower()}')
+                await ctx.send(f'{len(self.bot.cogs)} cogs reloaded.')
+                self.bot.config = reload_cfg('bot.cfg')
             elif len(args) == 1:
                 cog = args[0]
                 if cog == "cfg":
