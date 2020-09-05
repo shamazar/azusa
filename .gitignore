@@ -3,3 +3,4 @@ bot.cfg
 .vscode
 venv
 todo
+cogs/test.py
