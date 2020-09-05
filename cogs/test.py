@@ -5,9 +5,9 @@ class Test(commands.Cog):
         self.bot = bot
 
     @commands.command()
+    @commands.is_owner()
     async def test(self, ctx, *args):
-        if self.bot.is_owner(ctx.author):
-            await ctx.send(self.bot.config['bot']['test'])
+        await ctx.send(self.bot.config['bot']['test'])
 
 def setup(bot):
     bot.add_cog(Test(bot))
