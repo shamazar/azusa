@@ -7,7 +7,7 @@ class Test(commands.Cog):
     @commands.command()
     async def test(self, ctx, *args):
         if self.bot.is_owner(ctx.author):
-            await ctx.send(self.bot.config)
+            await ctx.send(self.bot.config['bot']['test'])
 
 def setup(bot):
     bot.add_cog(Test(bot))
