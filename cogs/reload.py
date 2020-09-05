@@ -14,10 +14,12 @@ class Reload(commands.Cog):
                 self.bot.reload_extension(f'cogs.{cog.lower()}')
             await ctx.send(f'{len(self.bot.cogs)} cogs reloaded.')
             self.bot.config = reload_cfg('bot.cfg')
+            self.bot.command_prefix = self.bot.config['bot']['prefix']
         elif len(args) == 1:
             cog = args[0]
             if cog == "cfg":
                 self.bot.config = reload_cfg('bot.cfg')
+                self.bot.command_prefix = self.bot.config['bot']['prefix']
                 await ctx.send('Config reloaded')
             elif cog in self.bot.cogs.keys():
                 await ctx.send(f'Reloading {cog}...')
